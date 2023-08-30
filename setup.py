@@ -10,5 +10,4 @@ setup(name='changes-toolbox',
       maintainer='Mike Wood',
       maintainer_email='mike.wood@sjsu.edu',
       url='https://github.com/mhwood/GreenlandCHANGES/tree/master',
-      packages=['toolbox']
-     )
+      packages=['toolbox', 'toolbox.initiation'])

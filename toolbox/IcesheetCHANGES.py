@@ -94,6 +94,7 @@ class AntarcticCHANGES(IcesheetCHANGES):
 
 
 class GreenlandCHANGES(IcesheetCHANGES):
+    # Extents(boundary) of the icesheet stored in grid_generation.grid_bounds
     def __init__(self, project_folder, data_folder):
         super().__init__(project_folder, data_folder)
 
