@@ -1,4 +1,4 @@
-# GreenlandCHANGES
+# IcelandCHANGES - Work in Progress (forked from mhwood/GreenlandCHANGES)
 **C**omprehensive **H**omogenization **A**nd dow**N**loading of **G**lacier **E**levation and **S**peed data
 
 ![Jakobshavn Example](https://github.com/mhwood/GreenlandCHANGES/blob/master/jakobshavn_example.jpg)
