@@ -27,11 +27,21 @@
 # https://search.earthdata.nasa.gov/search?q=ATL15%20V002
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# To add a new collection:
+# 1. create a new vaiable for the collection ID
+# 2. add *both* a long name and a short name to the dictionary below
+# 3. add the collection variable to the get_data_type method under the correct data type (elevation or velocity)
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 aaivm  = 'C2245171699-NSIDC_ECS'    # MEaSUREs Annual Antarctic Ice Velocity Maps V001
 gqisvm = 'C2627036252-NSIDC_ECS'    # MEaSUREs Greenland Quarterly Ice Sheet Velocity Mosaics from SAR and Landsat V005
 gmisvm = 'C2627046644-NSIDC_ECS'    # MEaSUREs Greenland Monthly Ice Sheet Velocity Mosaics from SAR and Landsat, Version 5
 atl14   = 'C2500138845-NSIDC_ECS'   # ATLAS/ICESat-2 L3B Gridded Antarctic and Arctic Land Ice Height, Version 2 (ATL14)
 atl15   = 'C2500140833-NSIDC_ECS'   # ATLAS/ICESat-2 L3B Gridded Antarctic and Arctic Land Ice Height Change, Version 2 (ATL15) 
+atl10   = 'C2567856357-NSIDC_ECS'   # ATLAS/ICESat-2 L3A Sea Ice Freeboard V006
+
 
 # Each collection has a long name first and a short name second -- REQUIRED
 collections = {
@@ -49,7 +59,15 @@ collections = {
             
             'ATLAS/ICESat-2 L3B Gridded Antarctic and Arctic Land Ice Height Change, Version 2': atl15,
             'ATL15 Antarctic Elevation': atl15,
+
+            'ATLAS/ICESat-2 L3A Sea Ice Freeboard V006': atl10,
+            'ATL10 Sea Ice Freeboard': atl10
             }
+
+# Specify whether the data source is velocity or elevation
+def get_data_type(collection_id):
+    collection_types = {"velocity" : [aaivm, gqisvm, gmisvm], "elevation": [atl14, atl15]}
+    return [key for key, value in collection_types.items() if collection_id in value][0]
 
 # Get collection ID from long or short name
 def collection(collection_key):    
@@ -77,6 +95,7 @@ def get_names(collection_key):
         short_name = collection_key
         long_name = list(collections.keys())[list(collections.keys()).index(collection_key)-1]
     return long_name, short_name
+
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
